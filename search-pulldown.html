@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search-pulldown.css">
+    <title>シンプルチャットアプリ</title>
+</head>
+
+<body>
+
+    <main>
+
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="検索したい言葉を入力してください。">
+        <ul id="myUL">
+            <li><a href="#">東京</a></li>
+            <li><a href="#">大阪</a></li>
+            <li><a href="#">名古屋</a></li>
+            <li><a href="#">福岡</a></li>
+            <li><a href="#">京都</a></li>
+            <li><a href="#">兵庫</a></li>
+            <li><a href="#">札幌</a></li>
+            <li><a href="#">沖縄</a></li>
+            <li><a href="#">千葉</a></li>
+        </ul>
+    </main>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName('li');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+<footer>
+    <nav class="wrapper-footer">
+        <ul class="menu-footer">
+            <li><a href="#">初めての方へ</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">特定商品取引法</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="#">会社概要</a></li>
+        </ul>
+    </nav>
+    <h5 class="copy-rights">©️2023 Cloud Garage Co,.Ltd. All Rights Reserved</h5>
+</footer>
+
+</html>

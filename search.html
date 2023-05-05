@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search.css">
+    <title>シンプルチャットアプリ</title>
+</head>
+
+<body>
+
+    <main>
+        <div id="right">
+            <input id="keyword" type="text">
+            <p>検索結果</p>
+            <ul id="info"></ul>
+        </div>
+
+        <div id="left">
+            <p>（候補リスト）</p>
+            <ul id="list">
+                <li>Mike</li>
+                <li>James</li>
+                <li>Jiro</li>
+                <li>Mick</li>
+                <li>Brian</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $("#keyword").on("input", searchEvent);
+
+
+        //functionのsearchEventをここで定義
+        function searchEvent() {
+            //空の配列を用意して該当する名前があったらここに格納する
+            const results = [];
+            //入力された文字列を取得して変数に格納する
+            //thisはイベントが発生した要素を指す(#keywordに対してinputイベントが発生した時)
+            const inputText = $(this).val();
+
+            //テキストがインプットされたら絞り込み検索(indexOf)を開始する
+            //listの子要素のliを1つずつ取得する
+            //テキストコンテンツがinputText変数で定義された文字列を含むかどうかを調べる
+            if (inputText) {
+                $("#list li").each((index, name) => {
+                    if (name.textContent.indexOf(inputText) !== -1) {
+
+                        //もしあればresultsの配列に入れていく
+                        results.push(name.textContent);
+                    }
+                });
+
+                //毎度出力する都度空にしないとどんどん追加されてしまう
+                $("#info").empty();
+                $.each(results, (index, name) => {
+                    //append以下の要素を追加する
+                    $("#info").append("<li>" + name + "</li>");
+                });
+            };
+        };
+    </script>
+
+</body>
+
+<footer>
+    <nav class="wrapper-footer">
+        <ul class="menu-footer">
+            <li><a href="#">初めての方へ</a></li>
+            <li><a href="#">よくある質問</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">特定商品取引法</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="#">会社概要</a></li>
+        </ul>
+    </nav>
+    <h5 class="copy-rights">©️2023 Cloud Garage Co,.Ltd. All Rights Reserved</h5>
+</footer>
+
+</html>
