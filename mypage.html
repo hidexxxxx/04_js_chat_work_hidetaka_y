@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mypage.css">
+    <title>シニア×供給者マッチング</title>
+</head>
+
+<body>
+    <header id="header">
+        <div class="logo-box">
+            <a href="index.html"><img class="brand-logo" src="img/otasuke-logo.png" alt="logo"></a>
+        </div>
+        <nav class="wrapper">
+            <ul class="menu">
+                <li class="menu-area"><a onclick="location.href='search-pulldown.html';">エリア選択</a></li>
+                <li class="menu-chat"><a onclick="location.href='chat.html';">チャット画面</a></li>
+                <li class="menu-mypage"><a onclick="location.href='mypage.html';">マイページ</a></li>
+                <li class="menu-community"><a onclick="location.href='community.html';">コミュニティー</a></li>
+            </ul>
+            <ul class="login">
+                <li class="menu-login"><a onclick="location.href='index.html';">ログイン</a></li>
+                <li class="login-contact"><a onclick="location.href='contact.html';">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form">
+            <div class="input-name-class">
+                <div class="input-name-p-div">
+                    <p class="input-name-p">①　名前　▶︎</p>
+                </div>
+                <div class="input-name-text-div">
+                    <input type="text" class="input-name-text" id="input-name">
+                </div>
+            </div>
+            <br>
+            <div class="input-canhelp-class">
+                <div class="input-canhelp-p-div">
+                    <p class="input-canhelp-p">②　お手伝いできること　▶︎</p>
+                </div>
+                <div class="input-canhelp-textarea-div">
+                    <textarea class="input-canhelp-textarea" rows="3" id="input-canhelp"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="input-condition-class">
+                <div class="input-condition-p-div">
+                    <p class="input-condition-p">③　条件　▶︎</p>
+                </div>
+                <div class="input-condition-textarea-div">
+                    <textarea class="input-condition-textarea" rows="3" id="input-condition"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="input-commit-class">
+                <div class="input-commit-p-div">
+                    <p class="input-commit-p">④　一言　▶︎</p>
+                </div>
+                <div class="input-commit-textarea-div">
+                    <textarea class="input-commit-textarea" rows="3" id="input-commit"></textarea>
+                </div>
+            </div>
+            <ul class="control-button">
+                <button type="button" class="save-button" id="save"
+                    onclick="location.href='search-pulldown.html';">Save</button>
+                <button type="button" class="clear-button" id="clear">Delete</button>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        ///onclickでJSONへの変換を行うための前処理
+        $("#save").on("click", function () {
+            const name = $("#input-name").val();
+            const canhelp = $("#input-canhelp").val();
+            const condition = $("#input-condition").val();
+            const commit = $("#input-commit").val();
+
+            const data = {
+                name: name,
+                canhelp: canhelp,
+                condition: condition,
+                commit: commit,
+            };
+
+            ///JSON.stringify()でjasonDataというJSON形式に変換
+            const jsonData = JSON.stringify(data);
+            localStorage.setItem("form", jsonData);
+        });
+
+        ///Deleteをクリックした時の処理
+        $("#clear").on("click", function () {
+            localStorage.removeItem("form");
+            $("#input-name").val("");
+            $("#input-canhelp").val("");
+            $("#input-condition").val("");
+            $("#input-commit").val("");
+        });
+
+        ///JSONデータの読み出しの処理
+        if (localStorage.getItem("form")) {
+
+            ///まずはjsonDataを引っ張り出してくる
+            const jsonData = localStorage.getItem("form");
+            ///引っ張ってきたjsonDataをオブジェクト形式のdataに変換して元に戻す
+            const data = JSON.parse(jsonData);
+            ///各idの場所に値を取得させる
+            $("#input-name").val(data.name);
+            $("#input-canhelp").val(data.canhelp);
+            $("#input-condition").val(data.condition);
+            $("#input-commit").val(data.commit);
+        }
+
+    </script>
+
+</body>
+
+<footer>
+    <nav class="wrapper-footer">
+        <ul class="menu-footer">
+            <li class="footer-first"><a href="#">初めての方へ</a></li>
+            <li class="footer-question"><a href="#">よくある質問</a></li>
+            <li class="footer-rule"><a href="#">利用規約</a></li>
+            <li class="footer-treat"><a href="#">特定商品取引法</a></li>
+            <li class="footer-policy"><a href="#">プライバシーポリシー</a></li>
+            <li class="footer-contact"><a href="#">お問い合わせ</a></li>
+            <li class="footer-CoInfo"><a href="#">会社概要</a></li>
+        </ul>
+    </nav>
+    <h5 class="copy-rights">©️2023 Cloud Garage Co,.Ltd. All Rights Reserved</h5>
+</footer>
+
+</html>

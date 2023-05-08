@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search-person-fukuoka.css">
+    <title>シニア×供給者マッチング</title>
+</head>
+
+<body>
+
+    <main>
+        <header id="header">
+            <div class="logo-box">
+                <a href="index.html"><img class="brand-logo" src="img/otasuke-logo.png" alt="logo"></a>
+            </div>
+            <nav class="wrapper">
+                <ul class="menu">
+                    <li class="menu-area"><a onclick="location.href='search-pulldown.html';">エリア選択</a></li>
+                    <li class="menu-chat"><a onclick="location.href='chat.html';">チャット画面</a></li>
+                    <li class="menu-mypage"><a onclick="location.href='mypage.html';">マイページ</a></li>
+                    <li class="menu-community"><a onclick="location.href='community.html';">コミュニティー</a></li>
+                </ul>
+                <ul class="login">
+                    <li class="menu-login"><a onclick="location.href='index.html';">ログイン</a></li>
+                    <li class="login-contact"><a onclick="location.href='contact.html';">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="受けたいサービスのキーワードを入力してください。">
+        <ul id="myUL" onclick="location.href='chat.html';">
+            <!-- 人のリストが出力される -->
+        </ul>
+    </main>
+
+    <script>
+
+        function myFunction() {
+            // Declare variables
+            const input = document.getElementById('myInput'); ///検索ボックスのid
+            const filter = input.value.toUpperCase();         ///inputされた文字を大文字に変換する
+            const ul = document.getElementById("myUL");       ///idがmyULの要素が代入される
+            const li = ul.getElementsByTagName('li');         ///ulの中にある全てのliの値が取得される。このコードがなければ何も表示されない
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (let i = 0; i < li.length; i++) {                ///リストliの要素全てを対象にループするには「i < li.length」の条件が必要
+                const a = li[i].getElementsByTagName("a")[0];    ///li内に含まれる同じワードを取得するためa要素が必要
+                const txtValue = a.textContent || a.innerText;   ///textContent は、要素のテキストコンテンツを返す。IE8以前の場合はinnerTextで返す
+                li[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ? "" : "none"; ///もし検索ワードが引っ掛からなければ−１を返す。見つかった場合は空文字列の代入、見つからなかった場合はnoneを代入してリストを非表示
+            }
+        }
+
+        const data = [
+            { name: 'みこ👚', task: 'お掃除', commit: '一生懸命頑張ります！！', condition: '¥3,000/件', photo: 'img/person-photo/miko.jpeg' },
+            { name: 'yoshiki', task: 'メルカリ出品＆購入サポート', commit: 'メルカリは日々使って熟知しています。出品から購入まで何でもサポートします🎸', condition: '¥2,500/件', photo: 'img/person-photo/yoshiki.jpeg' },
+            { name: 'ゆうじ🎩', task: '買い物', commit: '遠慮せずなんでも頼んでください', condition: '¥2,500/件', photo: 'img/person-photo/yuji.jpeg' },
+            { name: '町の配管修理屋さん🔧', task: '水道管や水回りの修理など', commit: '配管修理は朝飯前^^', condition: '¥4,000/件', photo: 'img/person-photo/pipe-man.jpeg' },
+            { name: '主婦ゆみこ🐈', task: '家事手伝い', commit: '基本家事はなんでもできます。', condition: '¥3,000/件', photo: 'img/person-photo/yumiko.jpeg' },
+            { name: 'キャッシー🇬🇧', task: 'お薬受け取り付き添い', commit: 'よければフィッシュアンドチップスをお作りします。', condition: '¥3,000/件', photo: 'img/person-photo/cassie.jpeg' },
+            { name: '鍵修理の鍵ックス🔑', task: '鍵の修理や合鍵作成', commit: '気軽にご相談ください', condition: '¥4,500/件', photo: 'img/person-photo/kagix.jpeg' },
+            { name: 'しゅうぞう🎾', task: '脳トレ', commit: '大学の授業の合間に頑張ります！！', condition: '¥2,000/件', photo: 'img/person-photo/shuzo.jpeg' }
+        ];
+
+        const myUL = document.querySelector('#myUL');
+
+        for (let i = 0; i < data.length; i++) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            const img = document.createElement('img');
+
+            a.href = '#';
+            a.innerHTML = `名前：${data[i].name}
+                            <br>お手伝いできること: ${data[i].task}
+                            <br>一言: ${data[i].commit}
+                            <br>条件(¥/(h・件)): ${data[i].condition}
+                            <br><br><img src="${data[i].photo}">`;
+
+            a.appendChild(img);
+            li.appendChild(a);
+            myUL.appendChild(li);
+        }
+    </script>
+
+</body>
+
+<footer>
+    <nav class="wrapper-footer">
+        <ul class="menu-footer">
+            <li class="footer-first"><a href="#">初めての方へ</a></li>
+            <li class="footer-question"><a href="#">よくある質問</a></li>
+            <li class="footer-rule"><a href="#">利用規約</a></li>
+            <li class="footer-treat"><a href="#">特定商品取引法</a></li>
+            <li class="footer-policy"><a href="#">プライバシーポリシー</a></li>
+            <li class="footer-contact"><a href="#">お問い合わせ</a></li>
+            <li class="footer-CoInfo"><a href="#">会社概要</a></li>
+        </ul>
+    </nav>
+    <h5 class="copy-rights">©️2023 Cloud Garage Co,.Ltd. All Rights Reserved</h5>
+</footer>
+
+</html>

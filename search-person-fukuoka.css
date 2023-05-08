@@ -66,7 +66,6 @@ nav .login li {
     margin-left: 46.5%;
 }
 
-
 .menu-area,
 .menu-chat,
 .menu-mypage,
@@ -101,9 +100,8 @@ nav .login li {
     padding: 0;
     margin: 0;
     max-height: 50vh;
-    /* 表示するスクロールバーの高さを指定 */
-    overflow-y: auto;
-    /* 縦方向のスクロールバーを表示 */
+    /* ビューポートの高さに相対的な高さを指定 */
+    overflow-y: scroll;
 }
 
 ul#myUL li {

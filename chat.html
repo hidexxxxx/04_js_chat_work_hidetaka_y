@@ -4,30 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>シンプルチャットアプリ</title>
+    <link rel="stylesheet" href="chat.css">
+    <title>シニア×供給者マッチング</title>
 </head>
 
 <body>
 
     <main>
-        <form>
-            <fieldset>
-                <legend>チャット入力画面</legend>
-                <div>
-                    name: <input type="text" id="name">
-                </div>
-                <div>
-                    text: <input type="text" id="text">
-                </div>
-                <div>
-                    <button type="button" id="send">send</button>
-                </div>
-            </fieldset>
-        </form>
+        <header id="header">
+            <div class="logo-box">
+                <a href="index.html"><img class="brand-logo" src="img/otasuke-logo.png" alt="logo"></a>
+            </div>
+            <nav class="wrapper">
+                <ul class="menu">
+                    <li class="menu-area"><a onclick="location.href='search-pulldown.html';">エリア選択</a></li>
+                    <li class="menu-chat"><a onclick="location.href='chat.html';">チャット画面</a></li>
+                    <li class="menu-mypage"><a onclick="location.href='mypage.html';">マイページ</a></li>
+                    <li class="menu-community"><a onclick="location.href='community.html';">コミュニティー</a></li>
+                </ul>
+                <ul class="login">
+                    <li class="menu-login"><a onclick="location.href='index.html';">ログイン</a></li>
+                    <li class="login-contact"><a onclick="location.href='contact.html';">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </header>
+        <p class="caution">サポートを受けたい日時 / 金額 / その他などを相談してください。</p>
+        <div class="container">
+            <div class="chat-area">
+                <ol>
+                    <!-- データ出力場所 -->
+                    <li id="output"></li>
+                </ol>
+            </div>
 
-        <!-- データ出力場所 -->
-        <ul id="output"></ul>
+            <!-- チャット入力画面 -->
+            <form>
+                <fieldset>
+                    <legend>入力画面</legend>
+                    <div class="messege-area">
+                        <div class="messege-area-name">
+                            <label for="name">名前:</label>
+                            <input type="text" id="name" class="name">
+                        </div>
+                        <div class="messege-area-text">
+                            <label for="text">内容:</label>
+                            <textarea rows="4" id="text" class="text"></textarea>
+                        </div>
+                        <div class="messege-area-button">
+                            <button type="button" id="send" class="button">送信</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <div class="review">
+                <p class="review-form" onclick="location.href='review-form.html';">⭐️レビューページへ</p>
+            </div>
+        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
@@ -115,7 +147,7 @@
             });
 
             // 🔽 データ取得条件の指定（今回は時間の新しい順に並び替えて取得）
-            const q = query(collection(db, "chat"), orderBy("time", "desc"));
+            const q = query(collection(db, "chat"), orderBy("time", "asc"));
 
             // データ取得処理
             onSnapshot(q, (querySnapshot) => {
@@ -153,13 +185,13 @@
 <footer>
     <nav class="wrapper-footer">
         <ul class="menu-footer">
-            <li><a href="#">初めての方へ</a></li>
-            <li><a href="#">よくある質問</a></li>
-            <li><a href="#">利用規約</a></li>
-            <li><a href="#">特定商品取引法</a></li>
-            <li><a href="#">プライバシーポリシー</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-            <li><a href="#">会社概要</a></li>
+            <li class="footer-first"><a href="#">初めての方へ</a></li>
+            <li class="footer-question"><a href="#">よくある質問</a></li>
+            <li class="footer-rule"><a href="#">利用規約</a></li>
+            <li class="footer-treat"><a href="#">特定商品取引法</a></li>
+            <li class="footer-policy"><a href="#">プライバシーポリシー</a></li>
+            <li class="footer-contact"><a href="#">お問い合わせ</a></li>
+            <li class="footer-CoInfo"><a href="#">会社概要</a></li>
         </ul>
     </nav>
     <h5 class="copy-rights">©️2023 Cloud Garage Co,.Ltd. All Rights Reserved</h5>
