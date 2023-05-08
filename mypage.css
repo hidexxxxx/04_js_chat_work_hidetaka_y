@@ -66,7 +66,6 @@ nav .login li {
     margin-left: 46.5%;
 }
 
-
 .menu-area,
 .menu-chat,
 .menu-mypage,
@@ -85,44 +84,71 @@ nav .login li {
     background-color: rgb(252, 233, 210);
 }
 
-#myInput {
-    background-image: url('/css/searchicon.png');
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 95%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
+.form {
+    margin-top: 50px;
 }
 
-#myUL {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    max-height: 50vh;
-    /* 表示するスクロールバーの高さを指定 */
-    overflow-y: auto;
-    /* 縦方向のスクロールバーを表示 */
+.input-name-class,
+.input-canhelp-class,
+.input-condition-class,
+.input-commit-class {
+    display: flex;
+    justify-content: space-between;
 }
 
-ul#myUL li {
-    padding: 0;
+.input-name-p-div,
+.input-canhelp-p-div,
+.input-commit-p-div,
+.input-condition-p-div {
+    width: 50%;
 }
 
-#myUL li a {
-    border: 1px solid #ddd;
-    margin-top: -1px;
-    background-color: #f6f6f6;
-    padding: 12px;
-    text-decoration: none;
+.input-name-p,
+.input-canhelp-p,
+.input-condition-p,
+.input-commit-p {
+    margin-left: 55%;
     font-size: 18px;
-    color: black;
-    display: block;
 }
 
-#myUL li a:hover:not(.header) {
-    background-color: #c8e4ff;
+.input-name-text-div,
+.input-condition-textarea-div,
+.input-canhelp-textarea-div,
+.input-commit-textarea-div {
+    width: 50%;
+}
+
+.input-name-text,
+.input-canhelp-textarea,
+.input-condition-textarea,
+.input-commit-textarea {
+    width: 450px;
+    font-size: 18px;
+}
+
+.control-button {
+    font-size: 20px;
+    display: flex;
+    margin-left: 42%;
+    margin-right: 30%;
+    padding-top: 5px;
+    /* padding-bottom: 5%; */
+}
+
+.save-button,
+.clear-button {
+    font-size: 20px;
+    width: 80px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(160, 112, 0);
+    display: block;
+    line-height: 1;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0.1px 0.1px rgb(0, 0, 0);
 }
 
 footer {
